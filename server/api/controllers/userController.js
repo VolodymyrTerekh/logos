@@ -12,10 +12,19 @@ class userController {
      */
 
     index(req, res) {
+        //TODO add User Model and sorting possibility
         return res.status(200).send({
             success: 'true',
             message: 'Get all users list',
             data: [
+                {
+                    id: 2,
+                    name: 'Andrii Terekh',
+                    email: 'none@gmail.com',
+                    password: 'md5_hash',
+                    created_at: '16.02.2020',
+                    updated_at: '16.02.2020'
+                },
                 {
                     id: 1,
                     name: 'Volodymyr Terekh',

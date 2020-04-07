@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NavigationStart, Router} from "@angular/router";
 
 @Component({
   selector: 'app-data',
@@ -7,7 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DataComponent implements OnInit {
 
-  constructor() { }
+  formAdd: boolean = false;
+  userList: boolean = false;
+
+  constructor(private router: Router) {
+    router.events.forEach((event) => {
+      if (event instanceof NavigationStart) {
+        if (event['url'] === '/users/add') {
+          this.formAdd = true;
+          this.userList = false;
+        }
+      }
+    });
+  }
 
   ngOnInit() {
   }

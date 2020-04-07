@@ -5,8 +5,8 @@ module.exports = {
     /* Validation - Get all users [GET - '/api/v1/users'] */
     getUsers: {
         query: {
-            page: Joi.number().required(),
-            pageSize: Joi.number().required()
+            page: Joi.number(),
+            pageSize: Joi.number()
         },
         headers: {
             accesstoken: Joi.string(), //TODO make required

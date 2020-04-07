@@ -9,15 +9,18 @@ import { Router, NavigationStart } from "@angular/router";
 export class AppComponent {
   title = 'client';
   showLayouts: boolean = false;
+  showLogin: boolean = false;
 
   constructor(private router: Router) {
 
     router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
-        if (event['url'] == '/login') {
+        if (event['url'] === '/login' || event['url'] === '/') {
           this.showLayouts = false;
+          this.showLogin = true;
         } else {
           this.showLayouts = true;
+          this.showLogin = false;
         }
       }
     });
