@@ -12,7 +12,7 @@ class userController {
      */
 
     index(req, res) {
-        pool.query('SELECT * FROM users ORDER BY name DESC', (error, results) => {
+        pool.query('SELECT * FROM users ORDER BY name ASC', (error, results) => {
            if (error) {
                throw error;
            }
