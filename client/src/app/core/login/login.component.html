@@ -38,8 +38,9 @@
       <p class="login-box-msg">Sign in to start your session</p>
 
      <!-- <form>-->
+      <form class="form-login" [formGroup]="loginForm" novalidate (ngSubmit)="login()">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Login">
+          <input type="text" formControlName="login" name="login" class="form-control" placeholder="Login">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -47,7 +48,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" formControlName="password" name="password" class="form-control" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -56,9 +57,11 @@
         </div>
         <div class="row">
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block" (click)="login()">Sign In</button>
+            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
           </div>
         </div>
+      </form>
+
       <!--</form>-->
     </div>
   </div>

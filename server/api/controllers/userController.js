@@ -1,4 +1,4 @@
-const userModel = require('../models/User');
+const pool = require('../database/database');
 
 class userController {
 
@@ -12,36 +12,25 @@ class userController {
      */
 
     index(req, res) {
-        //TODO add User Model and sorting possibility
-        return res.status(200).send({
-            success: 'true',
-            message: 'Get all users list',
-            data: [
-                {
-                    id: 2,
-                    name: 'Andrii Terekh',
-                    email: 'none@gmail.com',
-                    password: 'md5_hash',
-                    created_at: '16.02.2020',
-                    updated_at: '16.02.2020'
-                },
-                {
-                    id: 1,
-                    name: 'Volodymyr Terekh',
-                    email: 'hellsing.vova@ukr.net',
-                    password: 'md5_hash',
-                    created_at: '16.02.2020',
-                    updated_at: '16.02.2020'
-                }
-            ],
-            pagination: [
-                {
-                    page: req.query.page,
-                    pageSize: req.query.pageSize,
-                    rowCount: 1,
-                    pageCount: 1
-                }
-            ]
+        pool.query('SELECT * FROM users ORDER BY name DESC', (error, results) => {
+           if (error) {
+               throw error;
+           }
+
+            return res.status(200).send({
+                success: 'true',
+                message: 'Get all users list',
+                data: results.rows,
+                pagination: [
+                    {
+                        page: req.query.page,
+                        pageSize: req.query.pageSize,
+                        rowCount: 1,
+                        pageCount: 1
+                    }
+                ]
+            });
+
         });
     }
 
@@ -64,9 +53,28 @@ class userController {
     }
 
     store(req, res) {
-        return res.status(200).send({
-            success: 'true',
-            message: 'Create new user'
+        const name = req.body.name;
+        const email = req.body.email;
+        const password = req.body.password;
+        const date = new Date();
+
+        const dbQuery = 'with new_user as ( ' +
+            'insert into users (id, name, email, password, created_at, updated_at) ' +
+            'values ((select max(id)+1 from users), $1, $2, $3, $4, $4) ' +
+            'returning id ) ' +
+            'insert into user_roles (id, role_id, user_id) ' +
+            'values ((select max(id)+1 from user_roles), 2, (select id from new_user))';
+
+        pool.query(dbQuery, [name, email, password, date], (error, results) => {
+
+            if (error) {
+                throw error;
+            }
+
+            return res.status(200).send({
+                success: 'true',
+                message: 'Create new user'
+            });
         });
     }
 
