@@ -1,4 +1,4 @@
-const pool = require('../database/database');
+const connection = require('../database/database');
 
 const jwt      = require('jsonwebtoken');
 const passport = require('passport');
@@ -11,16 +11,16 @@ class authController {
 
         if(login && password) {
 
-            const dbQuery = 'select u.* as users, json_agg(distinct r.role) as roles, json_agg(distinct p.title) as permissions ' +
-                'from users u ' +
-                'inner join user_roles ur on u.id = ur.user_id ' +
-                'inner join roles r on ur.role_id = r.id ' +
-                'inner join role_permissions rp on r.id = rp.role_id ' +
-                'inner join permissions p on rp.permission_id = p.id ' +
-                'where u.email = $1 ' +
-                'group by u.id';
+            const dbQuery = `select u.*, group_concat(distinct r.role) as roles, json_arrayagg(p.title) as entitlements
+                from users u
+                inner join user_roles ur on u.id = ur.user_id
+                inner join roles r on ur.role_id = r.id
+                inner join role_permissions rp on r.id = rp.role_id
+                inner join permissions p on rp.permission_id = p.id
+                where email = ?
+                group by u.id`;
 
-            pool.query(dbQuery, [login], function(err, result) {
+            connection.query(dbQuery, [login], function(err, result) {
 
                 if (login !== 'test@test.com' || password !== 'test_test') {
                     return res.status(500).json({ message: 'User credentials does not match'});
@@ -30,7 +30,7 @@ class authController {
                     let payload = { id: 1 };
                     let token = jwt.sign(payload, 'secretKey', {expiresIn: '60m'});
 
-                    return res.status(200).json({ authUser: result.rows, token: token });
+                    return res.status(200).json({ authUser: result, token: 'Bearer ' + token });
                 }
             });
 

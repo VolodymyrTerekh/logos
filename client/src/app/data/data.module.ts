@@ -16,6 +16,6 @@ import { UserAddComponent } from './users/user-add/user-add.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [DataComponent, UsersComponent, UserDetailsComponent, UserAddComponent]
+  declarations: [DataComponent, UsersComponent, UserDetailsComponent, UserAddComponent],
 })
 export class DataModule { }

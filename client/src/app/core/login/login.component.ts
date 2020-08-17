@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
   }
 
   localStorageSave(user: IUser){
-    localStorage.setItem("access_token", 'Bearer ' + user["token"]);
+    localStorage.setItem("access_token", user["token"]);
   }
 
 

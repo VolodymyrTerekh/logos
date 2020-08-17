@@ -5,7 +5,7 @@
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">Users List</h3>
-            <a class="btn btn-success btn-right" [routerLink]="'/users/add'">Add New User</a>
+            <a class="btn btn-success btn-right" *ngIf="can_view_users" [routerLink]="'/users/add'">Add New User</a>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -16,6 +16,7 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Created_at</th>
+                <th>Actions</th>
               </tr>
               </thead>
               <tbody>
@@ -24,6 +25,7 @@
                 <td>{{ user.name }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.created_at }}</td>
+                <td><a [routerLink]="['details', user.id]"><i class="fas fa-edit"></i></a></td>
               </tr>
               </tbody>
             </table>
