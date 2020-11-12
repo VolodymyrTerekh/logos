@@ -1,0 +1,51 @@
+
+<app-add-user (addUserList)="addUserList($event)"></app-add-user>
+
+<div class="users-list">
+
+    <table class="users">
+        <tr class="head">
+                <th class="collumn1">ID</th>
+                <th class="collumn2">User Name</th>
+                <th class="collumn3">User Login</th>
+                <th class="collumn4">User Email</th>
+                <th class="collumn5">Created User</th>
+                <th class="collumn6">Update User</th>
+                <th class="collumn7">Admin</th>
+        </tr>
+        <ng-container *ngFor=" let i = index; let user of users | slice: pageSize | slice: 0:itemsPerPage | sortBy">
+            <fa-icon *ngIf="currentUser.can_delete_users === 1 ? true: false" (click)="deleteUser(user.id)" [icon]='faTrash' style="padding: 10px"></fa-icon>
+            <tr *ngIf="(currentUser.id === user.id) || (currentUser.can_view_users === 1) ? true: false"
+                [ngbTooltip]="user.id === currentUser.id ? 'Your Profile': false"
+                [routerLink]="user.id"
+                placement="right"
+                class="user-info animated"
+                [class.bg-black]="i%2 !== 0"
+                [class.new-element]="user.new_element"
+                [class.bounceInLeft]="user.new_element"
+                [ngStyle]="{'border':user.id === currentUser.id ? '2px solid red' : 'inherit'}">
+                <td class="collumn1">{{i+1}}</td>
+                <td class="collumn2">{{user.name}}</td>
+                <td class="collumn2">{{user.login}}</td>
+                <td class="collumn3">{{user.email}}</td>
+                <td class="collumn4">{{user.created_at | date:'MM/dd/yyyy'}}</td>
+                <td class="collumn5">{{user.update_at | date:'MM/dd/yyyy'}}</td>
+                <td class="collumn6">{{user.admin ? true : false}}</td>
+            </tr>
+        </ng-container>
+
+    </table>
+
+    <div class="pagination-table">
+
+        <ngb-pagination
+        [collectionSize]="collectionSize" [pageSize]="itemsPerPage" [(page)]="currentPage"
+        (pageChange)="onPageChange($event)">
+        </ngb-pagination>
+
+    </div>
+
+</div>
+
+
+

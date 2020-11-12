@@ -1,0 +1,27 @@
+header .logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo .logo-navigate nav ul {
+    display: flex;
+}
+
+header .logo .logo-navigate nav ul li{
+    padding-right: 20px;
+}
+
+header .logo .logo-navigate nav ul li a{
+    color: white;
+}
+
+header .logo .logo-navigate nav ul li a:hover{
+    color: red;
+}
+
+
+footer{
+    padding-top: 100px;
+    text-align: center;
+}

@@ -1,0 +1,33 @@
+<div class="user-entitlements">
+
+    <mat-form-field>
+    <mat-label>Your entitlements</mat-label>
+    <mat-select [disabled]="disableSelect.value">
+        <ng-container *ngFor="let type of entitlements">
+            <mat-option [value]="type.entitlements" disabled *ngIf="type.value === 1? true: false">{{ type.entitlements }}</mat-option>
+        </ng-container>
+    </mat-select>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field>
+    <mat-label>Add entitlements</mat-label>
+    <mat-select [disabled]="disableSelect.value" [(ngModel)]="selectAddEntitlements" name="entitlements">
+        <ng-container *ngFor="let type of entitlements">
+            <mat-option [value]="type.entitlements" *ngIf="type.value === 1? false: true">{{ type.entitlements }}</mat-option>
+        </ng-container>
+    </mat-select>
+    </mat-form-field>
+    <button mat-button (click)="addEntitlements()">Add</button>
+    <br>
+    <mat-form-field>
+    <mat-label>Add entitlements</mat-label>
+    <mat-select [disabled]="disableSelect.value" [(ngModel)]="selectDeleteEntitlements" name="entitlements">
+        <ng-container *ngFor="let type of entitlements">
+            <mat-option [value]="type.entitlements" *ngIf="type.value === 1? true: false">{{ type.entitlements }}</mat-option>
+        </ng-container>
+    </mat-select>
+    </mat-form-field>
+    <button mat-button (click)="deleteEntitlements()">Delete</button>
+
+</div>

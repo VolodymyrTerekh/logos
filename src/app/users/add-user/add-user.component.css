@@ -1,0 +1,49 @@
+.add-user{
+    padding: 20px 0px;
+}
+
+form {
+    position: relative;
+}
+
+.add-user input {
+    margin-right: 20px;
+    background: #ffffff47;
+    outline: none;
+    border: none;
+    padding: 5px;
+    font-size: 17px;
+    border: 2px solid transparent;
+    color: white;
+}
+
+.add-user input:hover {
+    border: 2px solid white;
+}
+
+input:focus{
+    border: 2px solid white !important;
+}
+
+.add-user button {
+    border: 1px solid white;
+    padding: 6px 14px;
+    background: transparent;
+    color: white;
+    cursor: pointer;    
+}
+
+.add-user button:hover{
+    border: 1px solid red
+}
+
+.add-user button:disabled{
+    border: 1px solid grey;
+    cursor: auto;
+}
+
+.error-required {
+    position: absolute;
+    top: 35px;
+    color: red;
+}

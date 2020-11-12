@@ -1,0 +1,81 @@
+<div class="wrap">
+
+    <div class="container">
+
+        <header>
+
+            <div class="logo">
+
+                <div class="logo-title">
+
+                    <h1>Welcome to User Management System</h1>
+
+                </div>
+
+                <div class="logo-navigate">
+
+                    <nav>
+
+                        <ul>
+                            <li>
+
+                                <a routerLink="/my-page" (click)="getMyPage()" routerLinkActive="active" >My-page</a>
+
+                            </li>
+
+                            <li>
+
+                                <a routerLink="/dashboard" (click)="getDashboard()" routerLinkActive="active" >Dashboard</a>
+
+                            </li>
+
+                            <li>
+
+                                <a routerLink="/users" (click)="getUsers()" routerLinkActive="active">Users</a>
+
+                            </li>
+
+                            <li *ngIf="isLoggedIn">
+
+                                <a (click)="logOut()" routerLinkActive="active" >LogOut</a>
+
+                            </li>
+
+                            <li *ngIf="!isLoggedIn">
+
+                                <a routerLink="/login" routerLinkActive="active">Login</a>
+
+                            </li>
+
+                        </ul>
+
+                    </nav>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <main>
+            <div class="container-content" [@bounceAnimation]="o.isActivated ? o.activatedRoute : ''">
+
+                <router-outlet #o="outlet"></router-outlet>
+
+            </div>
+
+        </main>
+
+        <footer>
+
+            <strong>&copy; Copyright 2020 Volodymyr Terekh</strong>
+
+        </footer>
+
+    </div>
+
+        <router-outlet name='userEntitlements'></router-outlet>
+
+
+</div>
+

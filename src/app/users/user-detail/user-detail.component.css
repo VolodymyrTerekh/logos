@@ -1,0 +1,33 @@
+.user-detail {
+    padding: 20px 0px;
+}
+.user {
+    margin-top: 20px;
+}
+
+.user form input:disabled{
+    border-bottom: 2px solid gray;
+    color: gray;
+}
+
+.buttons button {
+    border: 1px solid white;
+    padding: 6px 14px;
+    background: transparent;
+    color: white;
+    cursor: pointer;    
+}
+
+.buttons button:hover:not(button:disabled) {
+    border: 1px solid red;
+}
+
+
+.buttons button:disabled{
+    border: 1px solid grey;
+    cursor: auto;
+}
+
+.buttons div {
+    margin: 5px 10px;
+}

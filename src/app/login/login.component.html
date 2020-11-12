@@ -1,0 +1,63 @@
+
+<div class="sign-in">
+
+    <div class="container-sign-in">
+  
+        <div class="login-form">
+        
+            <form class="form-login" [formGroup]="loginForm" novalidate (ngSubmit)="login()">
+            
+                <div class="login">
+
+                    <label for="">Login</label><br>
+                    <input type="text" name="login" formControlName="login" autocomplete="off"
+                            class="input"
+                            [class.user-not-found]="passwordOrLoginIsInvalid">
+
+                </div>
+
+                <div class="error error-login ">
+                    
+                    <div class="animated bounceInLeft" *ngIf="loginField.touched && loginField.invalid && loginField.errors.required">
+    
+                        <span>This Field is required</span>
+    
+                    </div>
+
+                </div>
+
+                <div class="password">
+
+                    <label for="">Password</label><br>
+                    <input type="password" name="password" formControlName="password"
+                            class="input"
+                            [class.user-not-found]="passwordOrLoginIsInvalid">
+
+                </div>
+
+                <div class="error error-password ">
+                    
+                    <div class="animated bounceInRight" *ngIf="passwordField.touched && passwordField.invalid && passwordField.errors.required">
+    
+                        <span>This Field is required</span>
+    
+                    </div>
+
+                </div>
+
+                <div  class="error animated" *ngIf="passwordOrLoginIsInvalid">
+
+                    <span >{{ msg }}</span>
+
+                </div>
+            
+                <button [disabled]="!loginForm.touched || loginForm.invalid">Send</button>
+            
+            </form>
+        
+        </div>
+   </div>
+  
+</div>
+
+  

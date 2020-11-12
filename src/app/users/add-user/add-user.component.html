@@ -1,0 +1,21 @@
+<div class="add-user flex flex-end" >
+
+    <form #f="ngForm">
+
+        <input type="text" required name="text" #text="ngModel" ngModel pattern="[a-zA-Z]+" autocomplete="off">
+
+        <button (click)="addUser(f.value.text); f.reset()"
+                [disabled]="f.invalid">ADD
+        
+        </button>
+
+        <div class="error-required animated shake" *ngIf="text.errors?.required && text.touched">
+            <span>This field is required</span>
+        </div>
+
+        <div class="error-required animated shake" *ngIf="text.errors?.pattern && text.touched">
+            <span>Only Latin letters</span>
+        </div>
+    </form>
+
+</div>

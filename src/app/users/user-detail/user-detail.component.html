@@ -1,0 +1,75 @@
+<div class="user-detail">
+
+
+    <div class="buttons flex flex-center">
+
+        <div class="edit">
+
+            <button (click)="editUser()">Edit</button>
+
+        </div>
+
+        <div class="save">
+
+            <button (click)="saveUser()" [disabled]='!saveUserBtn'>Save</button>
+
+        </div>
+
+        <div class="entitlements">
+
+            <button *ngIf="!showEntitlements" [disabled]='(currentUser.can_view_details_full === 1) || (currentUser.id === currentShowUserDetail?.id)? false: true'
+                    [routerLink]="['',{ outlets: {userEntitlements: ['entitlements'] }}]"  [queryParams]="{ userId: currentShowUserDetail?.id}"
+                    (click)="getShowEntitlements">
+            Show Entitlements
+            </button>
+            <button *ngIf='showEntitlements' (click)="getShowEntitlements"
+                    [routerLink]="['',{ outlets: {userEntitlements: null }}]">
+            Hide Entitlements
+            </button>
+
+        </div>
+    </div>
+
+
+    <div class="user" >
+        <form [formGroup]="userForm" novalidate>
+            <div>
+
+                <label>
+                    User name
+                    <input type="text"  formControlName="userName" class="input">
+                </label>
+
+            </div>
+
+            <div>
+
+                <label>
+                    User Email
+                    <input type="text"  formControlName="userEmail" class="input">
+                </label>
+
+            </div>
+
+            <div>
+
+                <label>
+                    User Login
+                    <input type="text"  formControlName="userLogin" class="input">
+                </label>
+
+            </div>
+
+            <div>
+
+                <label>
+                    User Password
+                    <input type="text"  formControlName="userPassword" class="input">
+                </label>
+
+            </div>
+        </form>
+
+    </div>
+
+</div>

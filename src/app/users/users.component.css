@@ -1,0 +1,58 @@
+table.users {
+    margin: 0 auto;
+    background: #660000;
+    color: white;
+    border-collapse: collapse;
+    position: relative;
+}
+
+table.users tr.head{
+    height: 60px;
+    background: white;
+    color: black;
+}
+
+table.users tr th {
+    font-size: 18px;
+    color: black;
+    font-family: 'Merriweather', sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+table.users tr td {
+    font-family: 'Acme', sans-serif;
+    cursor: pointer;
+}
+
+table.users fa-icon {
+    border-left: 2px solid transparent;
+    position: absolute;
+    left: -40px;
+    cursor: pointer;
+}
+
+table.users fa-icon:hover {
+    color: red
+}
+
+tr {
+    height: 40px;
+    text-align: left;
+}
+
+.pagination-table {
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.bg-black{
+    background: white;
+    color: black;
+}
+
+.new-element {
+    background: green;
+    color: white;
+}
